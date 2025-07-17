@@ -1,0 +1,543 @@
+/* public/css/styles.css */
+
+body {
+    background-color: #f4f6fa !important; /* Blanco oscuro, profesional y suave */
+    color: #222 !important;
+}
+.dashboard-bg {
+    background: #f4f6fa !important;
+}
+
+.login-container {
+    max-width: 400px;
+    margin: 100px auto; /* Centrar el contenedor */
+    padding: 30px;
+    background-color: #495057; /* Color de fondo del recuadro */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5); /* Sombra */
+}
+
+.btn-google {
+    background-color: rgba(255, 87, 34, 0.8); /* Color de fondo más brillante */
+    color: white; /* Color de texto blanco */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* Borde blanco semitransparente */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño de fuente */
+    font-weight: bold; /* Negrita */
+    transition: background-color 0.3s, transform 0.3s, border-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    display: flex; /* Flex para centrar el icono y el texto */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    position: relative; /* Para el efecto de luz */
+    box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); /* Efecto de sombra metálica */
+}
+
+.btn-google::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 5px; /* Bordes redondeados */
+    background: rgba(255, 255, 255, 0.2); /* Color de luz */
+    opacity: 0; /* Inicialmente invisible */
+    transition: opacity 0.5s; /* Transición suave */
+    z-index: 0; /* Detrás del texto */
+}
+
+.btn-google:hover::before {
+    opacity: 1; /* Hacer visible el efecto de luz al pasar el mouse */
+}
+
+.btn-google:hover {
+    background-color: rgba(255, 87, 34, 1); /* Color de fondo al pasar el mouse (opaco) */
+    transform: scale(1.05); /* Efecto de aumento al pasar el mouse */
+    border-color: rgba(255, 255, 255, 1); /* Borde blanco opaco al pasar el mouse */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); /* Efecto de luz alrededor del borde */
+}
+
+.btn-google i {
+    margin-right: 10px; /* Espaciado entre el icono y el texto */
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #ffffff; /* Fondo blanco para el menú */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1), 0 0 20px rgba(0, 123, 255, 0.5); /* Sombra suave y efecto de luz azul */
+    transition: width 0.3s;
+    overflow: hidden;
+    position: fixed;
+    height: 100%;
+    padding-top: 20px;
+}
+
+.sidebar.active {
+    width: 250px; /* Ancho del menú activo */
+}
+
+.sidebar ul {
+    padding-left: 0;
+}
+
+.sidebar .nav-link {
+    padding: 10px 15px; /* Espaciado interno */
+    display: flex; /* Usar flex para alinear icono y texto */
+    align-items: center; /* Centrar verticalmente */
+    color: #333; /* Color del texto */
+    border: 2px solid transparent; /* Borde transparente inicialmente */
+    border-radius: 5px; /* Bordes redondeados */
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+    position: relative; /* Para el efecto de cuadro */
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Fondo azul claro al pasar el mouse */
+    border-color: rgba(0, 123, 255, 0.5); /* Borde azul semitransparente al pasar el mouse */
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5); /* Efecto de sombra azul */
+    animation: shake 0.5s; /* Aplicar la animación de temblor */
+}
+
+.sidebar .nav-link i {
+    color: #007bff; /* Color azul para los iconos */
+    margin-right: 10px; /* Espaciado entre el icono y el texto */
+    transition: color 0.3s; /* Transición suave para el color */
+}
+
+.sidebar .nav-link:hover i {
+    color: #0056b3; /* Color azul más oscuro al pasar el mouse */
+}
+
+.sidebar .collapse {
+    padding-left: 20px;
+}
+
+.content {
+    margin-left: 250px; /* Espacio para el navbar */
+    padding: 20px; /* Espaciado interno */
+}
+
+.note {
+    background-color: #f8f9fa; /* Fondo claro */
+    border: 1px solid #ccc; /* Borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 15px; /* Espaciado interno */
+    margin-top: 20px; /* Espaciado superior */
+}
+
+.note-text {
+    font-family: 'Courier New', Courier, monospace; /* Fuente de máquina de escribir */
+    color: #333; /* Color del texto */
+}
+
+/* Media Queries para Responsividad */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%; /* Ancho completo en pantallas pequeñas */
+        height: auto; /* Altura automática */
+        position: relative; /* Cambiar a posición relativa */
+    }
+
+    .content {
+        margin-left: 0; /* Sin margen en pantallas pequeñas */
+    }
+
+    .sidebar .nav-link {
+        text-align: center; /* Centrar texto en pantallas pequeñas */
+    }
+}
+
+.logo-container {
+    padding: 15px; /* Espaciado alrededor del logo */
+    display: flex; /* Usar flex para centrar el logo */
+    justify-content: center; /* Centrar horizontalmente */
+}
+
+.logo {
+    width: 80px; /* Ancho del logo */
+    height: 80px; /* Alto del logo */
+    border-radius: 50%; /* Bordes redondeados para hacer el logo circular */
+    object-fit: cover; /* Asegura que la imagen se ajuste bien al contenedor */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Sombra para darle profundidad */
+    transition: transform 0.3s, box-shadow 0.3s; /* Transiciones suaves */
+}
+
+.logo:hover {
+    transform: rotate(360deg); /* Giro completo al pasar el mouse */
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5); /* Aumentar sombra al pasar el mouse */
+}
+
+/* Definir la animación de temblor */
+@keyframes shake {
+    0% { transform: translate(1px, 0); }
+    25% { transform: translate(-1px, 0); }
+    50% { transform: translate(1px, 0); }
+    75% { transform: translate(-1px, 0); }
+    100% { transform: translate(0, 0); }
+}
+
+.sidebar .nav-link.item {
+    color: #007bff; /* Color azul para los elementos */
+}
+
+.sidebar .nav-link.item:hover, .sidebar .nav-link.item.active {
+    background-color: #e3f0ff !important;
+    color: #0056b3 !important;
+}
+.sidebar .nav-link.item:hover i, .sidebar .nav-link.item.active i {
+    color: #0056b3 !important;
+    transform: scale(1.15);
+    transition: color 0.2s, transform 0.2s;
+}
+
+.user-circle {
+    position: fixed; /* Fijo en la parte derecha */
+    top: 20px; /* Espaciado desde la parte superior */
+    right: 20px; /* Espaciado desde la derecha */
+    width: 50px; /* Ancho del círculo */
+    height: 50px; /* Alto del círculo */
+    border-radius: 50%; /* Hacerlo circular */
+    background-color: #007bff; /* Color de fondo */
+    color: white; /* Color del texto */
+    display: flex; /* Usar flex para centrar el ícono */
+    align-items: center; /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el círculo */
+    transition: background-color 0.3s; /* Transición suave */
+}
+
+.user-icon {
+    font-size: 30px; /* Tamaño del ícono */
+}
+
+.user-circle:hover {
+    background-color: #0056b3; /* Color más oscuro al pasar el mouse */
+}
+
+.logout-menu {
+    display: none; /* Ocultar el menú por defecto */
+    position: absolute; /* Posicionar el menú relativo al círculo */
+    top: 60px; /* Espaciado desde el círculo */
+    right: 0; /* Alinear a la derecha */
+    background-color: #ffffff; /* Fondo blanco */
+    border: 1px solid #007bff; /* Borde azul */
+    border-radius: 5px; /* Bordes redondeados */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
+    z-index: 1000; /* Asegurarse de que esté por encima de otros elementos */
+    padding: 10px; /* Espaciado interno */
+    transition: all 0.3s ease; /* Transición suave */
+}
+
+.logout-menu a {
+    display: block; /* Mostrar como bloque */
+    padding: 10px; /* Espaciado interno */
+    color: #333; /* Color del texto */
+    text-decoration: none; /* Sin subrayado */
+    border-radius: 3px; /* Bordes redondeados para los enlaces */
+}
+
+.logout-menu a:hover {
+    background-color: rgba(0, 123, 255, 0.1); /* Fondo claro al pasar el mouse */
+    color: #007bff; /* Cambiar color del texto al pasar el mouse */
+}
+
+/* Estilos para la tabla de oficios */
+.table {
+    margin-top: 20px; /* Espaciado superior */
+}
+
+.table th {
+    background-color: #007bff; /* Color de fondo azul para el encabezado */
+    color: white; /* Color de texto blanco */
+}
+
+.table td {
+    vertical-align: middle; /* Alinear verticalmente el contenido */
+}
+
+.btn {
+    margin-right: 5px; /* Espaciado entre botones */
+}
+
+/* Estilos para el formulario de crear oficio */
+.oficio-form-container {
+    max-width: 400px;
+    width: 100%;
+    padding: 30px 25px;
+    background-color: #495057;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.6);
+    margin: 40px 0;
+}
+
+.oficio-form-container h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.oficio-form-container .form-group label {
+    color: #f8f9fa;
+    font-weight: 500;
+}
+
+.oficio-form-container .form-control {
+    background-color: #343a40;
+    color: #fff;
+    border: 1px solid #6c757d;
+}
+
+.oficio-form-container .form-control:focus {
+    background-color: #23272b;
+    color: #fff;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.oficio-form-container .btn-primary {
+    background-color: #007bff;
+    border: none;
+    font-weight: 600;
+    padding: 10px 0;
+    border-radius: 6px;
+    transition: background 0.2s;
+}
+
+.oficio-form-container .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+/* Estilos personalizados para FullCalendar en fondo oscuro */
+.fc {
+    background-color: #23272b !important;
+    color: #fff !important;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+}
+.fc .fc-toolbar-title, .fc .fc-button {
+    color: #fff !important;
+}
+.fc .fc-col-header-cell {
+    background: #007bff !important;
+    color: #fff !important;
+    border: none;
+}
+.fc .fc-daygrid-day-number {
+    color: #fff !important;
+}
+.fc .fc-daygrid-event {
+    background: #007bff !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 6px;
+    padding: 2px 6px;
+    font-size: 0.95em;
+}
+.fc .fc-daygrid-day {
+    background: #23272b !important;
+}
+.fc .fc-day-today {
+    background: #343a40 !important;
+}
+
+/* Bordes delgados y pronunciados para look profesional */
+.table, .table th, .table td {
+    border: 1px solid #007bff !important;
+}
+.card, .modal-content, .oficio-form-container {
+    border: 1px solid #007bff !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+input.form-control, select.form-control, textarea.form-control {
+    border: 1px solid #007bff !important;
+    border-radius: 6px;
+    font-weight: 500;
+}
+.btn, .btn:focus, .btn:active {
+    border: 1px solid #007bff !important;
+    box-shadow: none !important;
+}
+.sidebar, .sidebar .nav-link, .sidebar .collapse {
+    border: 1px solid #007bff !important;
+}
+.fc, .fc .fc-col-header-cell, .fc .fc-daygrid-day, .fc .fc-day-today {
+    border: 1px solid #007bff !important;
+}
+/* Bordes de badges y elementos destacados */
+.badge {
+    border: 1px solid #007bff !important;
+    border-radius: 8px !important;
+    font-weight: 500;
+}
+
+/* Eliminar el estilo especial de GESTIÓN DE USUARIOS */
+.sidebar .nav-link.item.text-uppercase {
+    font-weight: 500 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px;
+    color: #222 !important;
+    background: transparent !important;
+    border-left: none !important;
+}
+
+/* Estilo arquitectónico para el calendario en el dashboard */
+.fc {
+    background-color: #f8fafc !important;
+    color: #222 !important;
+    border-radius: 14px;
+    box-shadow: 0 6px 32px rgba(80,80,80,0.08);
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+.fc .fc-toolbar-title, .fc .fc-button {
+    color: #3a3d42 !important;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+.fc .fc-col-header-cell {
+    background: #e9ecef !important;
+    color: #3a3d42 !important;
+    border: 1px solid #b0b4b9 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+.fc .fc-daygrid-day-number {
+    color: #3a3d42 !important;
+    font-weight: 500;
+}
+.fc .fc-daygrid-event {
+    background: linear-gradient(90deg, #007bff 60%, #b0b4b9 100%) !important;
+    color: #fff !important;
+    border: none;
+    border-radius: 8px;
+    padding: 2px 8px;
+    font-size: 1em;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+.fc .fc-daygrid-day {
+    background: #f8fafc !important;
+    border: 1px solid #e0e3e7 !important;
+}
+.fc .fc-day-today {
+    background: #e3f0ff !important;
+    border: 2px solid #007bff !important;
+}
+
+.dashboard-main-content {
+    margin-left: 250px; /* Igual al ancho del sidebar */
+    padding: 40px 40px 0 40px;
+    min-height: 100vh;
+    background: transparent;
+}
+
+/* Estilo arquitectónico para el calendario TUI */
+#calendar {
+    border-radius: 16px;
+    box-shadow: 0 6px 32px rgba(80,80,80,0.10);
+    background: #f8fafc;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    padding: 12px;
+    border: 1.5px solid #b0b4b9;
+}
+
+.tui-full-calendar-layout {
+    border-radius: 16px !important;
+    background: #f8fafc !important;
+}
+
+.tui-full-calendar-weekday-grid-line,
+.tui-full-calendar-month-dayname-item {
+    background: #e9ecef !important;
+    color: #3a3d42 !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    border: 1px solid #b0b4b9 !important;
+}
+
+.tui-full-calendar-timegrid-time {
+    color: #007bff !important;
+    font-weight: 600;
+}
+
+.tui-full-calendar-schedule-block {
+    border-radius: 8px !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    background: linear-gradient(90deg, #007bff 60%, #b0b4b9 100%) !important;
+    color: #fff !important;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+.tui-full-calendar-popup-container {
+    border-radius: 12px !important;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08) !important;
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+}
+
+/* Línea de tiempo mejorada para crear-acta */
+.timeline {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    background: linear-gradient(90deg, #fffbe6 60%, #ffe066 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(255, 193, 7, 0.08);
+    padding: 18px 10px 10px 10px;
+    position: relative;
+}
+.timeline-step {
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+.timeline-step:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 32px;
+    right: -50%;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, #ffe066 60%, #ffd60a 100%);
+    z-index: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.10);
+}
+.timeline-icon {
+    background: #fffbe6;
+    border: 3px solid #ffd60a;
+    color: #ffd60a;
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 10px;
+    font-size: 2rem;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(255, 193, 7, 0.10);
+    transition: background 0.3s, color 0.3s, border 0.3s;
+}
+.timeline-step.active .timeline-icon,
+.timeline-step.completed .timeline-icon {
+    background: #ffd60a;
+    color: #fff;
+    border-color: #ffc107;
+}
+.timeline-step.completed .timeline-icon {
+    background: #28a745;
+    border-color: #28a745;
+    color: #fff;
+}
+.timeline-step.active .timeline-label {
+    font-weight: bold;
+    color: #ffd60a;
+    text-shadow: 0 1px 2px #fffbe6;
+}
+.timeline-label {
+    font-size: 1.1rem;
+    color: #b59f00;
+    letter-spacing: 1px;
+}

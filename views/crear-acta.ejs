@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Acta</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <style>
+        .timeline {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        .timeline-step {
+            text-align: center;
+            flex: 1;
+            position: relative;
+        }
+        .timeline-step:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            top: 22px;
+            right: -50%;
+            width: 100%;
+            height: 4px;
+            background: #007bff;
+            z-index: 0;
+        }
+        .timeline-icon {
+            background: #fff;
+            border: 3px solid #007bff;
+            color: #007bff;
+            border-radius: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-size: 1.5rem;
+            z-index: 1;
+        }
+        .timeline-step.active .timeline-icon,
+        .timeline-step.completed .timeline-icon {
+            background: #007bff;
+            color: #fff;
+        }
+        .timeline-step.completed .timeline-icon {
+            border-color: #28a745;
+            background: #28a745;
+        }
+        .timeline-step.active .timeline-label {
+            font-weight: bold;
+            color: #007bff;
+        }
+        .timeline-label {
+            font-size: 1rem;
+        }
+        .d-none { display: none; }
+    </style>
+</head>
+<body>
+<div class="container d-flex flex-column align-items-center justify-content-center" style="min-height: 80vh;">
+    <div class="w-100" style="max-width: 600px;">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-center flex-grow-1" style="font-weight: 600;">Crear Acta</h2>
+            <a href="/dashboard" class="btn btn-outline-primary ml-2" title="Ir al Dashboard">
+                <i class="fas fa-home"></i>
+            </a>
+        </div>
+        <div class="timeline mb-4">
+            <div class="timeline-step active" id="step1-timeline">
+                <div class="timeline-icon"><i class="fas fa-layer-group"></i></div>
+                <div class="timeline-label">Clasificación</div>
+            </div>
+            <div class="timeline-step" id="step2-timeline">
+                <div class="timeline-icon"><i class="fas fa-info-circle"></i></div>
+                <div class="timeline-label">Datos generales</div>
+            </div>
+            <div class="timeline-step" id="step3-timeline">
+                <div class="timeline-icon"><i class="fas fa-users"></i></div>
+                <div class="timeline-label">Participantes</div>
+            </div>
+        </div>
+        <form id="actaForm" action="/crear-acta" method="POST">
+            <!-- Paso 1: Clasificación -->
+            <div id="step1">
+                <div class="form-group">
+                    <label for="tipo_reunion">Tipo de reunión</label>
+                    <select class="form-control" id="tipo_reunion" name="tipo_reunion" required>
+                        <optgroup label="Destacadas">
+                            <option value="Gerencia Preinstalaciones">Gerencia Preinstalaciones</option>
+                        </optgroup>
+                        <optgroup label="Especialidades">
+                            <option value="Equipamiento medico">Equipamiento médico</option>
+                            <option value="Señales debiles">Señales débiles</option>
+                        </optgroup>
+                        <optgroup label="Otras">
+                            <option value="Minsa-Vielca">Minsa-Vielca</option>
+                            <option value="Alcaldia">Alcaldía</option>
+                            <option value="Otro">Otro</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <button type="button" class="btn btn-primary float-right" onclick="nextStep(1)">Siguiente</button>
+            </div>
+            <!-- Paso 2: Datos generales -->
+            <div id="step2" class="d-none">
+                <div class="form-group">
+                    <label for="creador">Creador</label>
+                    <input type="text" class="form-control" id="creador" value="<%= user ? user.email : '' %>" readonly>
+                </div>
+                <div class="form-group">
+                    <label for="fecha">Fecha</label>
+                    <input type="date" class="form-control" id="fecha" name="fecha" required>
+                </div>
+                <div class="form-group">
+                    <label for="hora">Hora <i class="fas fa-clock"></i></label>
+                    <input type="time" class="form-control" id="hora" name="hora" required>
+                </div>
+                <div class="form-group">
+                    <label for="temas_abordados">Temas abordados</label>
+                    <textarea class="form-control" id="temas_abordados" name="temas_abordados" rows="3"></textarea>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Anterior</button>
+                <button type="button" class="btn btn-primary float-right" onclick="nextStep(2)">Siguiente</button>
+            </div>
+            <!-- Paso 3: Participantes -->
+            <div id="step3" class="d-none">
+                <div class="form-group">
+                    <label for="participantes">Participantes <small>(separados por coma)</small></label>
+                    <input type="text" class="form-control" id="participantes" name="participantes" placeholder="Ej: Juan Perez, Ana López, ..." required>
+                </div>
+                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Anterior</button>
+                <button type="submit" class="btn btn-success float-right">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    let currentStep = 1;
+    function nextStep(step) {
+        document.getElementById('step' + step).classList.add('d-none');
+        document.getElementById('step' + (step + 1)).classList.remove('d-none');
+        document.getElementById('step' + step + '-timeline').classList.remove('active');
+        document.getElementById('step' + step + '-timeline').classList.add('completed');
+        document.getElementById('step' + (step + 1) + '-timeline').classList.add('active');
+    }
+    function prevStep(step) {
+        document.getElementById('step' + step).classList.add('d-none');
+        document.getElementById('step' + (step - 1)).classList.remove('d-none');
+        document.getElementById('step' + step + '-timeline').classList.remove('active');
+        document.getElementById('step' + (step - 1) + '-timeline').classList.remove('completed');
+        document.getElementById('step' + (step - 1) + '-timeline').classList.add('active');
+    }
+</script>
+</body>
+</html> 

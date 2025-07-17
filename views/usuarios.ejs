@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Gestión de Usuarios</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mb-4">Gestión de Usuarios</h2>
+    <a href="/usuarios/agregar" class="btn btn-primary mb-3">Agregar Usuario</a>
+    <table class="table table-bordered table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th>#</th>
+                <th>Email</th>
+                <th>Rol</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% users.forEach(function(u, idx) { %>
+                <tr>
+                    <td><%= idx + 1 %></td>
+                    <td><%= u.email %></td>
+                    <td><%= u.rol %></td>
+                    <td>
+                        <% if (u.id !== user.id) { %>
+                        <form action="/usuarios/eliminar/<%= u.id %>" method="POST" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Seguro que deseas eliminar este usuario?')">
+                                <i class="fas fa-trash"></i> Eliminar
+                            </button>
+                        </form>
+                        <% } else { %>
+                        <span class="text-muted">(Tú)</span>
+                        <% } %>
+                    </td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+</div>
+</body>
+</html> 

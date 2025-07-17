@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <title>Iniciar Sesión</title>
+</head>
+<body>
+    <div class="login-container">
+        <h1 class="text-center mb-4">Iniciar Sesión</h1>
+        <% if (error.length > 0) { %>
+            <div class="alert alert-danger text-center" role="alert">
+                <%= error %>
+            </div>
+        <% } %>
+        <a href="/auth/google" class="btn btn-google btn-block">
+            <i class="fab fa-google"></i> Iniciar sesión con Google
+        </a>
+        <div class="note text-center mt-4">
+            <p class="note-text">
+                Solo los usuarios autorizados pueden darse de alta en esta página, de lo contrario comuníquese con su administrador 
+                <a href="mailto:upaguaga@gmail.com">upaguaga@gmail.com</a>, 
+                <a href="https://wa.me/84133497" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp 84133497</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
