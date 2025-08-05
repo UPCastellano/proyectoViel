@@ -1,6 +1,6 @@
 const { Sequelize } = require('sequelize');
 
-// Configuración optimizada para Vercel con Clever Cloud
+// Configuración optimizada para Render con Clever Cloud
 const sequelize = new Sequelize(
     process.env.DATABASE_URL || 'mysql://ulai7hrrxvr8qtlk:6CpHMhsr8GmjTBT0bbt2@bcrqdabgorxksmaomwyw-mysql.services.clever-cloud.com:3306/bcrqdabgorxksmaomwyw',
     {
@@ -13,7 +13,7 @@ const sequelize = new Sequelize(
             }
         },
         pool: {
-            max: 5,
+            max: 10,
             min: 0,
             acquire: 30000,
             idle: 10000
