@@ -16,7 +16,7 @@ const app = express();
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID, // Usar variable de entorno
     clientSecret: process.env.GOOGLE_CLIENT_SECRET, // Usar variable de entorno
-    callbackURL: '/auth/google/callback'
+    callbackURL: process.env.GOOGLE_CALLBACK_URL || '/auth/google/callback'
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         // Buscar el usuario en la base de datos
