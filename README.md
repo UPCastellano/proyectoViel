@@ -1,28 +1,104 @@
-# Guía para desinstalar y reinstalar Node.js
+# Sistema de Gestión de Oficios
 
-Si Node.js no está funcionando correctamente, sigue estos pasos para desinstalarlo y reinstalarlo:
+Sistema web para la gestión de oficios, actas y documentos oficiales.
 
-1. **Desinstalar Node.js:**
-   - Abre el Panel de Control de Windows.
-   - Ve a "Programas" > "Programas y características".
-   - Busca "Node.js" en la lista de programas instalados.
-   - Haz clic derecho sobre "Node.js" y selecciona "Desinstalar".
+## 🚀 Despliegue en Vercel
 
-2. **Reinstalar Node.js:**
-   - Ve a la página oficial de Node.js: [https://nodejs.org/](https://nodejs.org/)
-   - Descarga la versión LTS (Long Term Support) recomendada para la mayoría de los usuarios.
-   - Ejecuta el instalador que descargaste.
-   - Asegúrate de marcar la opción que dice "Instalar npm" durante el proceso de instalación.
-   - Completa la instalación siguiendo las instrucciones en pantalla.
+### Variables de Entorno Requeridas
 
-3. **Verificar la instalación:**
-   - Abre una nueva ventana de terminal (cmd).
-   - Ejecuta los siguientes comandos para verificar que Node.js y npm se hayan instalado correctamente:
-     ```
-     node --version
-     npm --version
-     ```
+Configura las siguientes variables de entorno en tu proyecto de Vercel:
 
-Si los comandos anteriores muestran las versiones de Node.js y npm, la instalación fue exitosa.
+#### Base de Datos MySQL (Clever Cloud)
+```
+DB_HOST=bcrqdabgorxksmaomwyw-mysql.services.clever-cloud.com
+DB_USER=ulai7hrrxvr8qtlk
+DB_PASSWORD=6CpHMhsr8GmjTBT0bbt2
+DB_NAME=bcrqdabgorxksmaomwyw
+DB_PORT=3306
+```
 
-Si necesitas más ayuda, no dudes en preguntar.
+#### Google OAuth (Opcional - para autenticación)
+```
+GOOGLE_CLIENT_ID=tu_google_client_id
+GOOGLE_CLIENT_SECRET=tu_google_client_secret
+```
+
+#### Configuración del Servidor
+```
+PORT=3000
+SESSION_SECRET=tu_session_secret_aqui
+NODE_ENV=production
+```
+
+### Pasos para Desplegar
+
+1. **Subir a GitHub:**
+   ```bash
+   git add .
+   git commit -m "Configuración para Vercel"
+   git push origin main
+   ```
+
+2. **Conectar con Vercel:**
+   - Ve a [vercel.com](https://vercel.com)
+   - Conecta tu repositorio de GitHub
+   - Importa el proyecto
+
+3. **Configurar Variables de Entorno:**
+   - En el dashboard de Vercel, ve a Settings > Environment Variables
+   - Agrega todas las variables listadas arriba
+
+4. **Desplegar:**
+   - Vercel detectará automáticamente el archivo `vercel.json`
+   - El despliegue se realizará automáticamente
+
+### Estructura del Proyecto
+
+```
+proyectoViel/
+├── app.js                 # Archivo principal
+├── vercel.json           # Configuración de Vercel
+├── package.json          # Dependencias
+├── config/
+│   └── database.js       # Configuración de base de datos
+├── models/               # Modelos de Sequelize
+├── routes/               # Rutas de la aplicación
+├── views/                # Plantillas EJS
+└── public/               # Archivos estáticos
+```
+
+### Tecnologías Utilizadas
+
+- **Backend:** Node.js, Express.js
+- **Base de Datos:** MySQL con Sequelize ORM
+- **Autenticación:** Passport.js con Google OAuth
+- **Frontend:** EJS, CSS, JavaScript
+- **Despliegue:** Vercel
+
+### Funcionalidades
+
+- ✅ Gestión de oficios enviados y recibidos
+- ✅ Sistema de autenticación
+- ✅ Gestión de actas
+- ✅ Subida de archivos
+- ✅ Panel de administración
+- ✅ Interfaz responsive
+
+### Desarrollo Local
+
+```bash
+# Instalar dependencias
+npm install
+
+# Crear archivo .env con las variables de entorno
+cp .env.example .env
+
+# Ejecutar en desarrollo
+npm run dev
+```
+
+### Notas Importantes
+
+- La base de datos debe estar accesible desde Vercel
+- Las variables de entorno son obligatorias para el funcionamiento
+- El archivo `vercel.json` configura el despliegue automáticamente
