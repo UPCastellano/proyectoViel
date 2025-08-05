@@ -1,14 +1,17 @@
 const { Sequelize } = require('sequelize');
 
+// Configuración optimizada para Vercel con Clever Cloud
 const sequelize = new Sequelize(
-    process.env.DB_NAME || 'bcrqdabgorxksmaomwyw',
-    process.env.DB_USER || 'ulai7hrrxvr8qtlk',
-    process.env.DB_PASSWORD || '6CpHMhsr8GmjTBT0bbt2',
+    process.env.DATABASE_URL || 'mysql://ulai7hrrxvr8qtlk:6CpHMhsr8GmjTBT0bbt2@bcrqdabgorxksmaomwyw-mysql.services.clever-cloud.com:3306/bcrqdabgorxksmaomwyw',
     {
-        host: process.env.DB_HOST || 'bcrqdabgorxksmaomwyw-mysql.services.clever-cloud.com',
-        port: process.env.DB_PORT || 3306,
         dialect: 'mysql',
-        logging: false, // Desactivar logs en producción
+        logging: false,
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
         pool: {
             max: 5,
             min: 0,
